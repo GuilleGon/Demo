@@ -1,0 +1,182 @@
+<mat-tab-group>
+
+    <mat-tab label="Inicio del dia">
+        <mat-card>
+            <mat-card-title>
+                Inicio del dia
+            </mat-card-title>
+            <br>
+            <mat-card-content>
+                <p>
+                    Cierre anterior
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" disabled value="{{i_cierre}}">
+                    </mat-form-field>
+                </p>
+
+                <p>
+                    efectivo
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" disabled value="{{i_efectivo}}">
+                    </mat-form-field>
+                </p>
+
+                <p>
+                    diferencia
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" disabled value="{{i_diferencia}}">
+                    </mat-form-field>
+                </p>
+
+                <br>
+                <div class="table">
+                    <!-- TABLA DE CHEQUES-->
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        <!--NUMERO DE CHEQUE -->
+                        <ng-container matColumnDef="numero">
+                            <th mat-header-cell *matHeaderCellDef> NroCheque</th>
+                            <td mat-cell *matCellDef="let element"> {{element.numero}}
+                            </td>
+                        </ng-container>
+
+                        <!--BANCO Column-->
+                        <ng-container matColumnDef="banco">
+                            <th mat-header-cell *matHeaderCellDef> Banco </th>
+                            <td mat-cell *matCellDef="let element"> {{element.banco}} </td>
+                        </ng-container>
+
+                        <!--VENCIMIENTO Column-->
+                        <ng-container matColumnDef="fecha_vencimiento">
+                            <th mat-header-cell *matHeaderCellDef> Fcha Vencimiento </th>
+                            <td mat-cell *matCellDef="let element"> {{element.fecha_vencimiento | date:'MM/dd/yyyy'}}
+                            </td>
+                        </ng-container>
+
+                        <!--MONTO Column-->
+                        <ng-container matColumnDef="monto">
+                            <th mat-header-cell *matHeaderCellDef> Monto </th>
+                            <td mat-cell *matCellDef="let element"> {{element.monto }} </td>
+                        </ng-container>
+
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>
+                <br>
+                <br>
+                <p>
+                    Total de cheques
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" disabled value="{{totalCheques}}">
+                    </mat-form-field>
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </mat-tab>
+
+
+    <mat-tab label="Arqueo">
+        <mat-card>
+            <mat-card-title>
+                ARQUEO
+            </mat-card-title>
+            <br>
+            <mat-card-content>
+
+                <p>
+                    Efectivo
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" disabled value="{{a_efectivo}}">
+                    </mat-form-field>
+                </p>
+
+                <div>
+                    <h2>Ingresos</h2>
+                    <table border="">
+                        <tr>
+                            <td>efectivo</td>
+                            <td>600</td>
+                        </tr>
+                        <tr>
+                            <td>cheque</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>deposito</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>transferencia</td>
+                            <td>200</td>
+                        </tr>
+                    </table>
+                </div>
+                <br>
+                <div>
+                    <h2>Egresos</h2>
+                    <table border="">
+                        <tr>
+                            <td>efectivo</td>
+                            <td>600</td>
+                        </tr>
+                        <tr>
+                            <td>cheque</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>deposito</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>transferencia</td>
+                            <td>200</td>
+                        </tr>
+                    </table>
+                </div>
+                <br>
+                <button type="button" (click)="empezar()" mat-raised-button>Empezar dia</button>
+
+                <br><br>
+                <p>
+                    Total de movimiento
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" disabled value="{{totalMovimiento}}">
+                    </mat-form-field>
+                </p>
+
+            </mat-card-content>
+        </mat-card>
+    </mat-tab>
+
+    <mat-tab label="Retiro de efectivo">
+        <mat-card>
+            <mat-card-title>
+                Retiro de efectivo
+            </mat-card-title>
+            <br>
+            <mat-card-content>
+                <div>
+                    <table border="1">
+                        <tr>
+                            <th>Responsable</th>
+                            <th>Concepto</th>
+                            <th>Monto</th>
+                        </tr>
+                        <tr>
+                            <td>Jaime</td>
+                            <td>Vuelto</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>Jessi</td>
+                            <td>Juguito pal tere</td>
+                            <td>100</td>
+                        </tr>
+                    </table>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </mat-tab>
+
+</mat-tab-group>

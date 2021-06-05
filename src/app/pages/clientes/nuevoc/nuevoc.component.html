@@ -1,0 +1,75 @@
+<mat-card>
+    <mat-card-title>
+        <h2>Crear cliente</h2>
+    </mat-card-title>
+    <br>
+    <mat-card-content class="content">
+        <div>
+            <form [formGroup]="newForm" (ngSubmit)="onCreate()">
+                <p>
+                    Razon social *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input formControlName="razon_social" autocomplete="off" matInput type="text">
+                    </mat-form-field>
+                </p>
+                <p>
+                    Email *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input formControlName="email" autocomplete="off" matInput type="text">
+                    </mat-form-field>
+                </p>
+                <p>
+                    Direccion *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input formControlName="direccion" autocomplete="off" matInput type="text">
+                    </mat-form-field>
+                </p>
+                <p>
+                    Tipo cliente *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-select formControlName="tipo_cliente">
+                            <mat-option value="Publico">Publico</mat-option>
+                            <mat-option value="Privado">Privado</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+                <p>
+                    CUIT *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="CUIT" autocomplete="off">
+                    </mat-form-field>
+                </p>
+                <p>
+                    Presupuestos emitidos *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="presupuestos_emitidos" autocomplete="off">
+                    </mat-form-field>
+                </p>
+                <p>
+                    Presupuestos pendientes *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="presupuestos_pendientes" autocomplete="off">
+                    </mat-form-field>
+                </p>
+                <p>
+                    Telefono *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="telefono" autocomplete="off">
+                    </mat-form-field>
+                </p>
+                <button type="submit" mat-raised-button>Crear Cliente</button>
+            </form>
+        </div>
+
+    </mat-card-content>
+
+
+</mat-card>

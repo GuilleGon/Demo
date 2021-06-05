@@ -1,0 +1,44 @@
+<mat-card>
+    <mat-card-title>
+        <h2>Registrar Retiro</h2>
+    </mat-card-title>
+    <br>
+    <mat-card-content class="content">
+        <div>
+            <form [formGroup]="newForm" (ngSubmit)="onCreate()">
+                <p>
+                    Numero *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input formControlName="numero" autocomplete="off" matInput type="text">
+                    </mat-form-field>
+                </p>
+                <p>
+                    Responsable *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input formControlName="responsable" autocomplete="off" matInput type="text">
+                    </mat-form-field>
+                </p>
+                <p>
+                    Concepto *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="concepto" autocomplete="off">
+                    </mat-form-field>
+                </p>
+                <p>
+                    Monto *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="monto" autocomplete="off">
+                    </mat-form-field>
+                </p>
+                <button type="submit" mat-raised-button>Crear Cliente</button>
+            </form>
+        </div>
+
+    </mat-card-content>
+
+
+</mat-card>

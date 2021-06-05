@@ -1,0 +1,59 @@
+<mat-card>
+    <mat-card-title>
+        <h2>Detalle del usuario // Modificar</h2>
+    </mat-card-title>
+    <br>
+    <mat-card-content class="contenido">
+        <form [formGroup]="upForm" (ngSubmit)="updateUser()">
+            <p>
+                username
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="username" type="text">
+                </mat-form-field>
+            </p>
+            <p>
+                contraseña
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+                    <button [disabled]="habilitado" type="button" mat-icon-button matSuffix (click)="hide = !hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <button mat-raised-button [disabled]="habilitado">Restaurar contraseña</button>
+            </p>
+            <p>
+                rol
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="role">
+                        <mat-option value="admin">admin</mat-option>
+                        <mat-option value="user">user</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </p>
+
+
+            <div class="avanzada">
+                <h3>Avanzada:</h3>
+                <hr>
+                <br>
+                <div class="editContent">
+                    <p>Modo de edicion: {{message}}</p>
+                    <mat-icon>edit</mat-icon>
+                    <mat-slide-toggle (click)="edicion()"></mat-slide-toggle>
+                </div>
+                <br>
+                <br>
+
+                <div class="buttons">
+                    <button type="button" mat-raised-button (click)="updateUser()" [disabled]="habilitado">Guardar Cambios</button>
+                    <span class="sparcer">&ensp;|&ensp;</span>
+                    <button type="button" mat-raised-button (click)="onDelete()" [disabled]="!habilitado">Borrar Usuario</button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+
+</mat-card>

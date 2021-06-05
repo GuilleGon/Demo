@@ -1,0 +1,202 @@
+<mat-card>
+    <mat-card-title>
+        <h2>Detalle del presupuesto // Modificar</h2>
+    </mat-card-title>
+    <br>
+    <mat-card-content class="contenido">
+        <form [formGroup]="upForm" (ngSubmit)="updatePresu()">
+            <p>
+                Numero
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="numero" type="text">
+                </mat-form-field>
+            </p>
+            <p>
+                Usuario
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="usuario" type="text">
+                </mat-form-field>
+            </p>
+            <p>
+                Cliente
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="cliente">
+                        <mat-option value="Publico">Ninguno</mat-option>
+                        <mat-option *ngFor="let lista of lista" [value]="lista">{{lista}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </p>
+            <p>
+                Fecha de emision
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="fecha_emision">
+                </mat-form-field>
+            </p>
+            <p>
+                Estado
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="estado">
+                        <mat-option value="Borrador">Borrador</mat-option>
+                        <mat-option value="Emitido">Emitido</mat-option>
+                        <mat-option value="En produccion">En produccion</mat-option>
+                        <mat-option value="Entregado">Entregado</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </p>
+            <p>
+                Observaciones
+                <br>
+                <mat-form-field appearance="outline">
+                    <textarea matInput formControlName="observaciones" type="text"></textarea>
+                </mat-form-field>
+            </p>
+            <p>
+                Descuentos
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="descuentos" type="text">
+                </mat-form-field>
+            </p>
+            <p>
+                Recargos
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="recargos" type="text">
+                </mat-form-field>
+            </p>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Pago
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Como va a pagar
+                        <mat-icon>paid</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+
+                <div class="Pago">
+                    <!--  SECCIN DE PAGO   -->
+                    <p>
+                        Forma de pago
+                        <br>
+                        <mat-form-field appearance="outline">
+                            <mat-select formControlName="forma_pago" [(value)]="select">
+                                <mat-option *ngFor="let forma_pago of forma_pago" [value]="forma_pago">{{forma_pago}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </p>
+
+                    <div *ngIf="select!='Efectivo'">
+                        <p>
+                            Banco
+                            <br>
+                            <mat-form-field appearance="outline">
+                                <input matInput formControlName="banco" type="text">
+                            </mat-form-field>
+                        </p>
+                        <p>
+                            Numero del pago
+                            <br>
+                            <mat-form-field appearance="outline">
+                                <input matInput formControlName="nro" type="text">
+                            </mat-form-field>
+                        </p>
+                        <p *ngIf="select=='Cheque'">
+                            Fecha de vencimiento
+                            <br>
+                            <mat-form-field appearance="outline">
+                                <input matInput formControlName="fecha_vencimiento" [matDatepicker]="picker">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </p>
+                    </div>
+                    <p>
+                        Monto
+                        <br>
+                        <mat-form-field appearance="outline">
+                            <input matInput formControlName="monto" type="text">
+                        </mat-form-field>
+                    </p>
+                </div>
+
+                <p>
+                    Total
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="total" type="text">
+                    </mat-form-field>
+                </p>
+            </mat-expansion-panel>
+            <br>
+            <!--           ITEM         -->
+
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Item
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Que va a llevar
+                        <mat-icon> shopping_cart</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p>
+                    Tipo
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="tipo" type="text">
+                    </mat-form-field>
+                </p>
+                <p>
+                    Descripcion
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <textarea matInput formControlName="descripcion" type="text"></textarea>
+                    </mat-form-field>
+                </p>
+                <p>
+                    Cantidad
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="cantidad" type="text">
+                    </mat-form-field>
+                </p>
+            </mat-expansion-panel>
+            <br>
+
+            <div class="avanzada">
+                <h3>Avanzada:</h3>
+                <hr>
+                <br>
+                <div class="editContent">
+                    <p>Modo de edicion: {{message}}</p>
+                    <mat-icon>edit</mat-icon>
+                    <mat-slide-toggle (click)="edicion()"></mat-slide-toggle>
+                </div>
+                <br>
+                <br>
+
+                <div>
+                    <button type="button" mat-raised-button (click)="updatePresu()" [disabled]="habilitado">Guardar
+                        Cambios</button>
+                    <span class="sparcer">&ensp;|&ensp;</span>
+                    <button type="button" mat-raised-button (click)="onDelete()" [disabled]="!habilitado">Borrar
+                        Presupuesto</button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+
+</mat-card>

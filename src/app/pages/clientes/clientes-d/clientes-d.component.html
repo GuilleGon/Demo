@@ -1,0 +1,90 @@
+<mat-card>
+    <mat-card-title>
+        <h2>Detalle del usuario // Modificar</h2>
+    </mat-card-title>
+    <br>
+    <mat-card-content class="contenido">
+        <form [formGroup]="upForm" (ngSubmit)="updateClient()">
+            <p>
+                Razon social
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="razon_social" type="text">
+                </mat-form-field>
+            </p>
+            <p>
+                Email
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="email" type="text">
+                </mat-form-field>
+            </p>
+            <p>
+                Direccion
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="direccion" type="text">
+                </mat-form-field>
+            </p>
+            <p>
+                Tipo cliente
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="tipo_cliente">
+                        <mat-option value="Publico">Publico</mat-option>
+                        <mat-option value="Privado">Privado</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </p>
+            <p>
+                CUIT
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="CUIT" type="text">
+                </mat-form-field>
+            </p>
+            <p>
+                Presupuestos emitidos
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="presupuestos_emitidos" type="text">
+                </mat-form-field>
+            </p>
+            <p>
+                Presupuestos pendientes
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="presupuestos_pendientes" type="text">
+                </mat-form-field>
+            </p>
+            <p>
+                Telefono
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="telefono" type="text">
+                </mat-form-field>
+            </p>
+
+
+            <div class="avanzada">
+                <h3>Avanzada:</h3>
+                <hr>
+                <br>
+                <div class="editContent">
+                    <p>Modo de edicion: {{message}}</p>
+                    <mat-icon>edit</mat-icon>
+                    <mat-slide-toggle (click)="edicion()"></mat-slide-toggle>
+                </div>
+                <br>
+                <br>
+
+                <div>
+                    <button type="button" mat-raised-button (click)="updateClient()" [disabled]="habilitado">Guardar Cambios</button>
+                    <span class="sparcer">&ensp;|&ensp;</span>
+                    <button type="button" mat-raised-button (click)="onDelete()" [disabled]="!habilitado">Borrar Usuario</button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+
+</mat-card>

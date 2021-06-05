@@ -1,0 +1,37 @@
+<mat-card>
+    <mat-card-title>
+        <h2>Crear cliente</h2>
+    </mat-card-title>
+    <br>
+    <mat-card-content class="content">
+        <div>
+            <form [formGroup]="newForm" (ngSubmit)="onCreate()">
+                <p>
+                    nombre de usuario *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input formControlName="username" autocomplete="off" matInput type="text">
+                    </mat-form-field>
+                </p>
+                <p>
+                    contraseña *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input formControlName="password" autocomplete="off" matInput type="text">
+                    </mat-form-field>
+                </p>
+                <p>
+                    role *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input formControlName="role" autocomplete="off" matInput type="text">
+                    </mat-form-field>
+                </p>
+                <button type="submit" mat-raised-button>Crear Cliente</button>
+            </form>
+        </div>
+
+    </mat-card-content>
+
+
+</mat-card>

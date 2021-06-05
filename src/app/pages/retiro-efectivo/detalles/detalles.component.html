@@ -1,0 +1,68 @@
+<mat-card>
+    <mat-card-title>
+        <h2>Detalle del retiro // Modificar</h2>
+    </mat-card-title>
+    <br>
+    <mat-card-content class="contenido">
+        <form [formGroup]="upForm" (ngSubmit)="updateRetiro()">
+            <p>
+                Numero
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="numero" type="text">
+                </mat-form-field>
+            </p>
+            <p>
+                Responsable
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="responsable" type="text">
+                </mat-form-field>
+            </p>
+            <p>
+                Concepto
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="concepto" type="text">
+                </mat-form-field>
+            </p>
+            <p>
+                Monto
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="monto" type="text">
+                </mat-form-field>
+            </p>
+            <p>
+                Fecha
+                <br>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="fecha" type="text">
+                </mat-form-field>
+            </p>
+
+
+            <div class="avanzada">
+                <h3>Avanzada:</h3>
+                <hr>
+                <br>
+                <div class="editContent">
+                    <p>Modo de edicion: {{message}}</p>
+                    <mat-icon>edit</mat-icon>
+                    <mat-slide-toggle (click)="edicion()"></mat-slide-toggle>
+                </div>
+                <br>
+                <br>
+
+                <div>
+                    <button type="button" mat-raised-button (click)="updateRetiro()" [disabled]="habilitado">Guardar
+                        Cambios</button>
+                    <span class="sparcer">&ensp;|&ensp;</span>
+                    <button type="button" mat-raised-button (click)="onDelete()" [disabled]="!habilitado">Borrar
+                        Usuario</button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+
+</mat-card>

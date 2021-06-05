@@ -1,0 +1,50 @@
+<mat-form-field class="mat-form-field">
+    <mat-label>Buscar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Pedro" #input>
+</mat-form-field>
+<button *ngIf="isAdmin == 'admin'" class="new" [routerLink]="'/nuevoE'" mat-raised-button >nuevo retiro</button>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- fecha Column -->
+        <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha. </th>
+            <td mat-cell *matCellDef="let element" class="example-element-row:not"> {{element.fecha}} </td>
+        </ng-container>
+
+        <!-- responsable Column -->
+        <ng-container matColumnDef="responsable">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Responsable </th>
+            <td mat-cell *matCellDef="let element"> {{element.responsable}} </td>
+        </ng-container>
+
+        <!-- concepto Column -->
+        <ng-container matColumnDef="concepto">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Concepto </th>
+            <td mat-cell *matCellDef="let element"> {{element.concepto}} </td>
+        </ng-container>
+
+        <!-- monto Column -->
+        <ng-container matColumnDef="monto">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Monto </th>
+            <td mat-cell *matCellDef="let element"> {{element.monto }} </td>
+        </ng-container>
+
+
+
+        <!-- config table-->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" class="element-row" (click)="DetalleRetiro(row.id)">
+        </tr>
+
+        <!-- en caso de no encontrar datos -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No se encuentran los datos: "{{input.value}}"</td>
+        </tr>
+
+
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 15, 25, 50, 100]"></mat-paginator>
+</div>
