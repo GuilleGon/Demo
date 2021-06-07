@@ -26,10 +26,6 @@ export class Recibos {
 
     @Column()
     @IsNotEmpty()
-    fecha_vencimiento: number;
-
-    @Column()
-    @IsNotEmpty()
     monto: number;
 
     @Column()

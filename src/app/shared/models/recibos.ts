@@ -9,7 +9,6 @@ export interface Recibo{
 
     //presupuesto
     forma_pago: string;
-    fecha_vencimiento: string;
     monto: number;
 
     cantidad: number;

@@ -30,7 +30,7 @@ const routes: Routes = [
   
 
   { path: 'recibos', loadChildren: () => import('./pages/recibos/recibos.module').then(m => m.RecibosModule) },
-  { path: 'recibos/detalleRec', loadChildren: () => import('./pages/recibos/detalles/detalles.module').then(m => m.DetallesModule) },
+  { path: 'recibos/detalleRec/:id', loadChildren: () => import('./pages/recibos/detalles/detalles.module').then(m => m.DetallesModule) },
   { path: 'recibos/nuevoR', loadChildren: () => import('./pages/recibos/nuevo/nuevo.module').then(m => m.NuevoModule) },
 
   { path: 'bancos', loadChildren: () => import('./pages/bancos/bancos.module').then(m => m.BancosModule) },

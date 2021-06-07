@@ -69,7 +69,7 @@ export class DetallesComponent implements OnInit {
           "forma_pago": presupuesto.forma_pago,
           "banco": presupuesto.banco,
           "nro": presupuesto.nro,
-          "fecha_vencimiento": presupuesto.fecha_vencimiento,
+          "fecha": presupuesto.fecha,
           "monto": presupuesto.monto,
           "total": presupuesto.total,
           "tipo": presupuesto.tipo,
@@ -87,24 +87,23 @@ export class DetallesComponent implements OnInit {
   }
 
   upForm = this.fb.group({  //Formulario de "detalle Cliente"
-    "id": this.id,
-    "numero": [''],
-    "usuario": [''],
-    "cliente": [''],
-    "fecha_emision": [''],
-    "estado": [''],
+    "numero": ['', Validators.required],
+    "usuario": ['', Validators.required],
+    "cliente": ['', Validators.required],
+    "fecha_emision":['', Validators.required] ,
+    "estado": ['', Validators.required],
     "observaciones": [''],
-    "descuentos": [''],
-    "recargos": [''],
-    "forma_pago": [''],
-    "banco": [''],
-    "nro": [''],
-    "fecha_vencimiento": [''],
-    "monto": [''],
+    "descuentos": [0, Validators.required],
+    "recargos": [0, Validators.required],
+    "forma_pago": ['', Validators.required],
+    "banco": '',
+    "nro": '',
+    "fecha": '',
+    "monto": ['', Validators.required],
     "total": [''],
-    "tipo": [''],
+    "tipo": ['', Validators.required],
     "descripcion": [''],
-    "cantidad": ['']
+    "cantidad": ['', Validators.required]
   });
 
 

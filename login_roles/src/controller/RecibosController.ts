@@ -39,14 +39,13 @@ export class RecibosController {
 
     static newRecibos = async (req: Request, res: Response) => { 
 
-        const { numero, cliente, fecha_emision, forma_pago, fecha_vencimiento, monto, cantidad} = req.body;
+        const { numero, cliente, fecha_emision, forma_pago, monto, cantidad} = req.body;
         const recibo = new Recibos();
 
         recibo.numero = numero;
         recibo.cliente = cliente;
         recibo.fecha_emision = fecha_emision;
         recibo.forma_pago = forma_pago;
-        recibo.fecha_vencimiento = fecha_vencimiento;
         recibo.monto = monto;
         recibo.cantidad = cantidad;
 
@@ -77,7 +76,6 @@ export class RecibosController {
             numero,
             cliente,
             fecha_emision,
-            fecha_vencimiento,
             monto,
             forma_pago,
             cantidad
@@ -92,7 +90,6 @@ export class RecibosController {
             recibo.cliente = cliente;
             recibo.fecha_emision = fecha_emision;
             recibo.forma_pago = forma_pago;
-            recibo.fecha_vencimiento = fecha_vencimiento;
             recibo.monto = monto;
             
             recibo.cantidad = cantidad

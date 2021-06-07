@@ -59,7 +59,7 @@ export class NuevoComponent implements OnInit, OnDestroy {
     "forma_pago": ['', Validators.required],
     "banco": [''],
     "nro": [0],
-    "fecha_vencimiento": [new Date()],
+    "fecha": [new Date()],
     "monto": ['', Validators.required],
     "total": [''],
     "tipo": ['', Validators.required],
@@ -76,6 +76,6 @@ export class NuevoComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.presuSvc.newPresu(formValue).subscribe(data => console.log(data))
     );
-    //this.router.navigate(['/presupuestos']);
+    this.router.navigate(['/presupuestos']);
   }
 }

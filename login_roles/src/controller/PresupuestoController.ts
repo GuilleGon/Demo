@@ -36,7 +36,7 @@ export class PresupuestoController {
     };
 
     static newPresupuesto = async (req: Request, res: Response) => {
-        const { numero, usuario, cliente, observaciones, descuentos, recargos, estado, forma_pago, banco, nro, fecha_vencimiento, monto, tipo, descripcion, cantidad } = req.body;
+        const { numero, usuario, cliente, observaciones, descuentos, recargos, estado, forma_pago, banco, nro, fecha, monto, tipo, descripcion, cantidad } = req.body;
         const presupuesto = new Presupuesto();
 
         let total;
@@ -67,7 +67,7 @@ export class PresupuestoController {
             presupuesto.banco = banco;
             presupuesto.nro = nro;
             presupuesto.monto = monto;
-            presupuesto.fecha_vencimiento = fecha_vencimiento;
+            presupuesto.fecha = fecha;
 
         presupuesto.total = total;
         presupuesto.tipo = tipo;
@@ -108,7 +108,7 @@ export class PresupuestoController {
             forma_pago,
             banco,
             nro,
-            fecha_vencimiento,
+            fecha,
             monto,
             tipo,
             descripcion,
@@ -137,7 +137,7 @@ export class PresupuestoController {
             presupuesto.banco = banco;
             presupuesto.nro = nro;
             presupuesto.monto = monto;
-            presupuesto.fecha_vencimiento = fecha_vencimiento
+            presupuesto.fecha = fecha
 
             presupuesto.total = total;
             presupuesto.tipo = tipo;

@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsOptional } from "class-validator";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
@@ -51,7 +51,7 @@ export class Presupuesto {
 
     @Column()
     @IsOptional()
-    fecha_vencimiento: Date;
+    fecha: Date;
 
     @Column("decimal", { precision: 10, scale: 2 })
     @IsNotEmpty()
@@ -72,7 +72,6 @@ export class Presupuesto {
     @Column()
     @IsNotEmpty()
     cantidad: number;
-
 
 
 }

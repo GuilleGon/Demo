@@ -16,7 +16,7 @@ export interface Presuspuestos {
     forma_pago: string;
     banco: string;
     nro: number;
-    fecha_vencimiento: string;
+    fecha: string;
     monto: number; //Muestra en el recibo
     total: number;
 

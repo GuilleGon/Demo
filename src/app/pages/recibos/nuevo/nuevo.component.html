@@ -1,1 +1,65 @@
-<p>nuevo works!</p>
+<mat-card>
+    <mat-card-title>
+        <h2>Crear cliente</h2>
+    </mat-card-title>
+    <br>
+    <mat-card-content class="content">
+        <div>
+            <form [formGroup]="newForm" (ngSubmit)="onCreate()">
+                <p>
+                    Numero *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input formControlName="numero" autocomplete="off" matInput type="text">
+                    </mat-form-field>
+                </p>
+                <p>
+                    Cliente *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-select formControlName="cliente">
+                            <mat-option value="ninguno">Ninguno</mat-option>
+                            <mat-option *ngFor="let lista of lista" [value]="lista">{{lista.cliente}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+                <p>
+                <p>
+                    Fecha de emision *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="fecha_emision" [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </p>
+                <p>
+                    Forma de pago *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="forma_pago" autocomplete="off">
+                    </mat-form-field>
+                </p>
+                <p>
+                    Monto *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="monto" autocomplete="off">
+                    </mat-form-field>
+                </p>
+                <p>
+                    Cantidad *
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="cantidad" autocomplete="off">
+                    </mat-form-field>
+                </p>
+                <button type="submit" mat-raised-button>Crear recibo</button>
+            </form>
+        </div>
+
+    </mat-card-content>
+
+
+</mat-card>
