@@ -84,10 +84,11 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(rest));
   }
 
+
   private handlerError(err): Observable<never> {
     let errorMessage = "An error ocurred retrieving data";
     if (err) {
-      errorMessage = `Error: code ${err.message}`;
+      errorMessage = `CAMPOS NO VALIDOS, Error: code ${err.message}`;
     }
     window.alert(errorMessage);
     return throwError(errorMessage);

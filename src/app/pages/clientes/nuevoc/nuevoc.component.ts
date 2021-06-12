@@ -41,11 +41,17 @@ export class NuevocComponent implements OnInit, OnDestroy {
 
 
   onCreate() {
+    if (this.newForm.invalid) {
+      return;
+    }
+
     const formValue = this.newForm.value;
     this.subscription.add(
-      this.clientSvc.newClient(formValue).subscribe()
+      this.clientSvc.newClient(formValue).subscribe(data => {
+        this.router.navigate(['/clientes']);
+      })
     );
-    this.router.navigate(['/clientes']);
+    
   }
 
 

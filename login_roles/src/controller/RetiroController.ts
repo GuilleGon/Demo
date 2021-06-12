@@ -55,7 +55,7 @@ export class RetiroController {
         try {
             await retiroRepository.save(retiro);
         } catch (e) {
-            return res.status(409).json({ message: 'Retiro already exist' });
+            return res.status(409).json({ message: `retiro already exist: ${e}` });
         }
 
         res.send('retiro created');

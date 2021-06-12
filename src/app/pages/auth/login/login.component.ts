@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +12,12 @@ import { HttpHeaders } from '@angular/common/http';
 export class LoginComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   hide = true;
+
   loginForm = this.fb.group({
     username: [''],
     password: [''],
+  }, {
+    uptadeOn: 'submit',
   });
 
   constructor(
@@ -25,8 +27,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) { }
 
 
-
   ngOnInit(): void {
+
   }
 
   ngOnDestroy(): void {
@@ -34,6 +36,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onLogin(): void {
+    if (this.loginForm.invalid) {
+      return;
+    }
+
     const formValue = this.loginForm.value;
     this.subscription.add(
       this.authSvc.login(formValue).subscribe((res) => {
@@ -42,6 +48,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
       })
     );
+
   }
+
+
 
 }

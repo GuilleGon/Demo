@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ClienteDetalle } from '@app/shared/models/client.interfase';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -27,9 +28,12 @@ export class ClientesService {
     return this.http.patch<ClienteDetalle>(`${environment.API}/clients/${client.id}`, client);
   }
 
-  public deleteClient(id: string){
+  public deleteClient(id: string) {
     return this.http.delete<ClienteDetalle>(`${environment.API}/clients/${id}`);
   }
+  
+
+
 
 
 }

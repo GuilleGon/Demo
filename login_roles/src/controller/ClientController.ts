@@ -60,7 +60,7 @@ export class ClientController {
         try {
             await clientRepository.save(client);
         } catch (e) {
-            return res.status(409).json({ message: 'Client already exist' });
+            return res.status(409).json({ message: `Client already exist ${e}` }, );
         }
 
         res.send('client created')

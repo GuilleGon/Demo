@@ -1,7 +1,6 @@
 import { validate } from "class-validator";
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
-import { Client } from "../entity/Client";
 import { Presupuesto } from "../entity/Presupuestos";
 
 export class PresupuestoController {
@@ -36,8 +35,9 @@ export class PresupuestoController {
     };
 
     static newPresupuesto = async (req: Request, res: Response) => {
-        const { numero, usuario, cliente, observaciones, descuentos, recargos, estado, forma_pago, banco, nro, fecha, monto, tipo, descripcion, cantidad } = req.body;
+        const { numero, usuario, cliente, observaciones, descuentos, recargos, estado, forma_pago, banco, nro, fecha, monto, tipo, descripcion, cantidad, montoI } = req.body;
         const presupuesto = new Presupuesto();
+
 
         let total;
         if ((descuentos && recargos) > 0) {
@@ -64,15 +64,25 @@ export class PresupuestoController {
         presupuesto.estado = estado;
         presupuesto.forma_pago = forma_pago;
 
+        if (forma_pago == "Cheque") {
             presupuesto.banco = banco;
             presupuesto.nro = nro;
             presupuesto.monto = monto;
-            presupuesto.fecha = fecha;
+            presupuesto.fecha = fecha
+            presupuesto.montoI = montoI;
+        } else if (forma_pago == "Efectivo") {
+            presupuesto.monto = monto;
+        } else {
+            presupuesto.banco = banco;
+            presupuesto.nro = nro;
+            presupuesto.monto = monto;
+        }
 
         presupuesto.total = total;
         presupuesto.tipo = tipo;
         presupuesto.descripcion = descripcion;
         presupuesto.cantidad = cantidad;
+
 
         const validationOpt = { validationError: { target: false, value: false } };
         const errors = await validate(presupuesto, validationOpt);
@@ -82,12 +92,13 @@ export class PresupuestoController {
         }
 
         const presuRepository = getRepository(Presupuesto);
-        
-        
+
+
         try {
             await presuRepository.save(presupuesto);
+
         } catch (e) {
-            return res.status(409).json({ message: 'Presupuesto already exist' });
+            return res.status(409).json({ message: `Presupuesto already exist: ${e}` });
         }
 
         res.send('Presupuesto created');
@@ -112,10 +123,11 @@ export class PresupuestoController {
             monto,
             tipo,
             descripcion,
-            cantidad
+            cantidad,
+            montoI
         } = req.body;
 
-        
+
         let total;
         total = monto - (monto * descuentos / 100) + (monto * recargos / 100);
 
@@ -127,17 +139,25 @@ export class PresupuestoController {
             presupuesto.numero = numero;
             presupuesto.usuario = usuario;
             presupuesto.cliente = cliente;
-            presupuesto.fecha_emision = new Date();
             presupuesto.observaciones = observaciones;
             presupuesto.descuentos = descuentos;
             presupuesto.recargos = recargos;
             presupuesto.estado = estado;
             presupuesto.forma_pago = forma_pago;
 
-            presupuesto.banco = banco;
-            presupuesto.nro = nro;
-            presupuesto.monto = monto;
-            presupuesto.fecha = fecha
+            if (forma_pago == "Cheque") {
+                presupuesto.banco = banco;
+                presupuesto.nro = nro;
+                presupuesto.monto = monto;
+                presupuesto.fecha = fecha
+                presupuesto.montoI = montoI;
+            } else if (forma_pago == "Efectivo") {
+                presupuesto.monto = monto;
+            } else {
+                presupuesto.banco = banco;
+                presupuesto.nro = nro;
+                presupuesto.monto = monto;
+            }
 
             presupuesto.total = total;
             presupuesto.tipo = tipo;

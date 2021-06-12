@@ -44,7 +44,15 @@ const routes: Routes = [
 
   { path: 'precios', loadChildren: () => import('./pages/precios/precios/precios.module').then(m => m.PreciosModule) },
   { path: 'precios/nuevo', loadChildren: () => import('./pages/precios/nuevo/nuevo.module').then(m => m.NuevoModule) },
-  { path: 'precios/detalles', loadChildren: () => import('./pages/precios/detalles/detalles.module').then(m => m.DetallesModule) },
+  { path: 'precios/detalles/:id', loadChildren: () => import('./pages/precios/detalles/detalles.module').then(m => m.DetallesModule) },
+
+  { path: 'proveedores', loadChildren: () => import('./pages/proveedores/proveedores/proveedores.module').then(m => m.ProveedoresModule) },
+  { path: 'proveedores/detalles/:id', loadChildren: () => import('./pages/proveedores/detalles/detalles.module').then(m => m.DetallesModule) },
+  { path: 'proveedores/nuevo', loadChildren: () => import('./pages/proveedores/nuevo/nuevo.module').then(m => m.NuevoModule) },
+
+  { path: 'gastos', loadChildren: () => import('./pages/gastos/gastos/gastos.module').then(m => m.GastosModule) },
+  { path: 'gastos/detalles/:id', loadChildren: () => import('./pages/gastos/detalles/detalles.module').then(m => m.DetallesModule) },
+  { path: 'gastos/nuevo', loadChildren: () => import('./pages/gastos/nuevo/nuevo.module').then(m => m.NuevoModule) },
 
   
 

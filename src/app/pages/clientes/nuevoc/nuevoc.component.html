@@ -7,10 +7,10 @@
         <div>
             <form [formGroup]="newForm" (ngSubmit)="onCreate()">
                 <p>
-                    Razon social *
                     <br>
                     <mat-form-field appearance="outline">
-                        <input formControlName="razon_social" autocomplete="off" matInput type="text">
+                        <mat-label>Razon Social</mat-label>
+                        <input formControlName="razon_social" autocomplete="off" matInput type="text" placeholder="Ej. Juancito">
                     </mat-form-field>
                 </p>
                 <p>

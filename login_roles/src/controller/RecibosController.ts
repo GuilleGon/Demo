@@ -61,7 +61,7 @@ export class RecibosController {
         try {
             await reciboRepository.save(recibo);
         } catch (e) {
-            return res.status(409).json({ message: 'Recibo already exist' });
+            return res.status(409).json({ message: `recibo already exist: ${e}` });
         }
 
         res.send('recibo created')

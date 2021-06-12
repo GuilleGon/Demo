@@ -62,7 +62,7 @@ export class UserController {
             await userRepository.save(user);
         }
         catch(e){
-            return res.status(409).json({message: 'Username already exist'});
+            return res.status(409).json({message: `usuario already exist: ${e}`});
         }
 
         //all ok

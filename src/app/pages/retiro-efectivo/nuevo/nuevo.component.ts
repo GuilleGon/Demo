@@ -18,7 +18,7 @@ export class NuevoComponent implements OnInit, OnDestroy {
     "concepto": [''],
     "monto": ['']
   });
-  
+
   constructor(
     private fb: FormBuilder,
     private retiro: EfectivoService,
@@ -28,16 +28,19 @@ export class NuevoComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  onCreate(){
+  onCreate() {
     const formValue = this.newForm.value;
     this.subscription.add(
-      this.retiro.crearRetiro(formValue).subscribe()
+      this.retiro.crearRetiro(formValue).subscribe(() => {
+        this.router.navigate(['/efectivo']);
+      })
+
     );
-    this.router.navigate(['/efectivo']);
+
   }
 
 }

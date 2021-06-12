@@ -1,0 +1,65 @@
+<mat-form-field class="mat-form-field">
+    <mat-label>Buscar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Pedro" #input>
+</mat-form-field>
+<button *ngIf="isAdmin == 'admin'" class="new" mat-raised-button [routerLink]="'/proveedores/nuevo'">nuevo
+    proveedor</button>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- codigo Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Id. </th>
+            <td mat-cell *matCellDef="let element" class="example-element-row:not"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- razon_social Column -->
+        <ng-container matColumnDef="razon_social">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Razonsocial </th>
+            <td mat-cell *matCellDef="let element"> {{element.razon_social}} </td>
+        </ng-container>
+
+        <!-- CUIT Column -->
+        <ng-container matColumnDef="CUIT">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> CUIT </th>
+            <td mat-cell *matCellDef="let element"> {{element.CUIT }} </td>
+        </ng-container>
+
+        <!-- telefono Column -->
+        <ng-container matColumnDef="telefono">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefono </th>
+            <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+        </ng-container>
+
+        <!-- email Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <!-- direccion Column -->
+        <ng-container matColumnDef="direccion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Direccion </th>
+            <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+        </ng-container>
+
+
+
+
+
+        <!-- config table-->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" class="element-row" (click)="DetalleProvee(row.id)">
+        </tr>
+
+        <!-- en caso de no encontrar datos -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No se encuentran los datos: "{{input.value}}"</td>
+        </tr>
+
+
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 15, 25, 50, 100]"></mat-paginator>
+</div>

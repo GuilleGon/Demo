@@ -1,6 +1,5 @@
-import { IsNotEmpty, IsOptional } from "class-validator";
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-
+import { IsNotEmpty } from "class-validator";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Presupuesto {
@@ -8,52 +7,51 @@ export class Presupuesto {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ default: '' })
     @IsNotEmpty()
-    numero: number;
+    numero: string;
 
-    @Column()
+    @Column({ default: '' })
     @IsNotEmpty()
     usuario: string;
 
-    @Column()
+    @Column({ default: '' })
+    @IsNotEmpty()
     cliente: string;
 
-    @Column()
+
+    @Column({ default: '' })
     @CreateDateColumn()
     fecha_emision: Date;
 
-    @Column()
+    @Column({ default: '' })
     estado: string;
 
-    @Column()
+    @Column({ length: 1500 })
     observaciones: string;
 
-    @Column()
+    @Column({ default: 0 })
     descuentos: number;
 
-    @Column()
+    @Column({ default: 0 })
     recargos: number
 
 
     //--------------FORMA DE PAGO/TIPO
-    @Column()
+    @Column({ default: '' })
     @IsNotEmpty()
     forma_pago: string;
 
-    @Column()
-    @IsOptional()
+    @Column({ default: '' })
     banco: string;
 
-    @Column()
-    @IsOptional()
-    nro: number;
+    @Column({ default: '' })
+    nro: string;
 
-    @Column()
-    @IsOptional()
-    fecha: Date;
+    @Column({ default: '' })
+    fecha: string;
 
-    @Column("decimal", { precision: 10, scale: 2 })
+    @Column("decimal", { precision: 15, scale: 2 })
     @IsNotEmpty()
     monto: number;
 
@@ -62,15 +60,16 @@ export class Presupuesto {
 
     //--------------------------ITEMS
 
-    @Column()
-    @IsNotEmpty()
+    @Column({ default: '' })
+    montoI: string;
+
+    @Column({ default: '' })
     tipo: string;
 
-    @Column()
+    @Column({ default: '' })
     descripcion: string;
 
-    @Column()
-    @IsNotEmpty()
+    @Column({ default: 0 })
     cantidad: number;
 
 

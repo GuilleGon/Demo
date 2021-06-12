@@ -1,0 +1,70 @@
+<mat-card>
+    <mat-card-title>
+        <h2>Detalle del proveedor // Modificar</h2>
+    </mat-card-title>
+    <br>
+    <mat-card-content class="contenido">
+        <form [formGroup]="upForm" (ngSubmit)="updateProv()">
+            <p>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Razon Social</mat-label>
+                    <input matInput formControlName="razon_social" type="text" placeholder="razon_social">
+                </mat-form-field>
+            </p>
+            <p>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>CUIT</mat-label>
+                    <input matInput formControlName="CUIT" type="text" placeholder="CUIT">
+                </mat-form-field>
+            </p>
+            <p>
+                <br>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>telefono</mat-label>
+                    <input matInput formControlName="telefono" type="text" placeholder="telefono">
+                </mat-form-field>
+            </p>
+            <p>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" placeholder="Email">
+                </mat-form-field>
+            </p>
+            <p>
+                <br>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Direccion</mat-label>
+                    <input matInput formControlName="direccion" type="text" placeholder="Direccion">
+                </mat-form-field>
+            </p>
+            <br>
+
+            <div class="avanzada">
+                <h3>Avanzada:</h3>
+                <hr>
+                <br>
+                <div class="editContent">
+                    <p>Modo de edicion: {{message}}</p>
+                    <mat-icon>edit</mat-icon>
+                    <mat-slide-toggle (click)="edicion()"></mat-slide-toggle>
+                </div>
+                <br>
+                <br>
+
+                <div>
+                    <button type="button" mat-raised-button (click)="updateProv()" [disabled]="habilitado">Guardar
+                        Cambios</button>
+                    <span class="sparcer">&ensp;|&ensp;</span>
+                    <button type="button" mat-raised-button (click)="onDelete()" [disabled]="!habilitado">Borrar
+                        proveedor</button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+
+</mat-card>

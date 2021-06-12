@@ -6,34 +6,33 @@
     <mat-card-content class="content">
         <form [formGroup]="newForm" (ngSubmit)="onCreate()">
             <p>
-                Numero
                 <br>
                 <mat-form-field appearance="outline">
-                    <input matInput formControlName="numero" type="text">
+                    <mat-label>Numero</mat-label>
+                    <input matInput formControlName="numero" placeholder="Numero">
                 </mat-form-field>
             </p>
             <p>
-                Usuario
                 <br>
                 <mat-form-field appearance="outline">
-                    <input matInput formControlName="usuario" type="text">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput formControlName="usuario" placeholder="Usuario">
                 </mat-form-field>
             </p>
             <p>
-                Cliente
                 <br>
                 <mat-form-field appearance="outline">
+                    <mat-label>Cliente</mat-label>
                     <mat-select formControlName="cliente">
-                        <mat-option value="Publico">Ninguno</mat-option>
                         <mat-option *ngFor="let lista of lista" [value]="lista">{{lista}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
             </p>
             <p>
-                Estado
                 <br>
                 <mat-form-field appearance="outline">
+                    <mat-label>Estado</mat-label>
                     <mat-select formControlName="estado">
                         <mat-option value="Borrador">Borrador</mat-option>
                         <mat-option value="Emitido">Emitido</mat-option>
@@ -43,138 +42,130 @@
                 </mat-form-field>
             </p>
             <p>
-                Observaciones
                 <br>
                 <mat-form-field appearance="outline">
-                    <textarea matInput formControlName="observaciones" type="text"></textarea>
+                    <mat-label>observaciones</mat-label>
+                    <textarea matInput formControlName="observaciones" placeholder="Observaciones"></textarea>
                 </mat-form-field>
             </p>
 
 
-            <p class="des" style="font-size: 12px">
-                Descuentos
+            <p class="des">
                 <br>
                 <mat-form-field class="fom" appearance="outline">
-                    <input matInput formControlName="descuentos" type="text">
+                    <mat-label>Descuentos %</mat-label>
+                    <input matInput formControlName="descuentos" placeholder="Descuentos %">
                 </mat-form-field>
-
-                Recargos
+                <span class="sparcer">&ensp;.&ensp;</span>
                 <br>
                 <mat-form-field class="fom" appearance="outline">
-                    <input matInput formControlName="recargos" type="text">
-                </mat-form-field>%
+                    <mat-label>Recargos %</mat-label>
+                    <input matInput formControlName="recargos" placeholder="Recargos %">
+                </mat-form-field>
             </p>
 
             <br>
-
             <br>
-            <br>
-            <br>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Pago
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        Como va a pagar
-                        <mat-icon>paid</mat-icon>
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
+            <hr>
+            <h2>
+                <mat-icon>paid</mat-icon> Pago
+            </h2>
 
 
-                <div class="Pago">
-                    <!--  SECCIN DE PAGO   -->
+
+            <div class="Pago">
+                <!--  SECCIN DE PAGO   -->
+                <p>
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Forma de pago</mat-label>
+                        <mat-select formControlName="forma_pago" [(value)]="select">
+                            <mat-option *ngFor="let forma_pago of forma_pago" [value]="forma_pago">{{forma_pago}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+
+                <div *ngIf="select!='Efectivo'">
                     <p>
-                        Forma de pago
                         <br>
                         <mat-form-field appearance="outline">
-                            <mat-select formControlName="forma_pago" [(value)]="select">
-                                <mat-option *ngFor="let forma_pago of forma_pago" [value]="forma_pago">{{forma_pago}}
-                                </mat-option>
-                            </mat-select>
+                            <mat-label>Banco</mat-label>
+                            <input matInput formControlName="banco" placeholder="Banco">
                         </mat-form-field>
                     </p>
-
-                    <div *ngIf="select!='Efectivo'">
-                        <p>
-                            Banco
-                            <br>
-                            <mat-form-field appearance="outline">
-                                <input matInput formControlName="banco" type="text">
-                            </mat-form-field>
-                        </p>
-                        <p>
-                            Numero del pago
-                            <br>
-                            <mat-form-field appearance="outline">
-                                <input matInput formControlName="nro">
-                            </mat-form-field>
-                        </p>
-                        <p *ngIf="select=='Cheque'">
-                            Fecha
-                            <br>
-                            <mat-form-field appearance="outline">
-                                <input matInput formControlName="fecha" [matDatepicker]="picker">
-                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
-                            </mat-form-field>
-                        </p>
-                    </div>
                     <p>
-                        Monto
                         <br>
                         <mat-form-field appearance="outline">
-                            <input matInput formControlName="monto" type="text">
+                            <mat-label>Numero de pago</mat-label>
+                            <input matInput formControlName="nro" placeholder="Numero de pago">
+                        </mat-form-field>
+                    </p>
+                    <p *ngIf="select=='Cheque'">
+                        <br>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Fecha</mat-label>
+                            <input matInput formControlName="fecha" [matDatepicker]="picker" placeholder="Fecha">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
                     </p>
                 </div>
-
                 <p>
-                    Total
                     <br>
                     <mat-form-field appearance="outline">
-                        <input matInput type="text" disabled>
+                        <mat-label>Monto</mat-label>
+                        <input matInput formControlName="monto" placeholder="Monto">
                     </mat-form-field>
                 </p>
-            </mat-expansion-panel>
+            </div>
+
+            <p>
+                <br>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Total</mat-label>
+                    <input matInput disabled>
+                </mat-form-field>
+            </p>
             <br>
             <!--           ITEM         -->
 
 
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Item
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        Que va a llevar
-                        <mat-icon> shopping_cart</mat-icon>
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <p>
-                    Tipo
-                    <br>
-                    <mat-form-field appearance="outline">
-                        <input matInput formControlName="tipo" type="text">
-                    </mat-form-field>
-                </p>
-                <p>
-                    Descripcion
-                    <br>
-                    <mat-form-field appearance="outline">
-                        <textarea matInput formControlName="descripcion" type="text"></textarea>
-                    </mat-form-field>
-                </p>
-                <p>
-                    Cantidad
-                    <br>
-                    <mat-form-field appearance="outline">
-                        <input matInput formControlName="cantidad" type="text">
-                    </mat-form-field>
-                </p>
-            </mat-expansion-panel>
+            <hr>
+            <h2>
+                <mat-icon> shopping_cart</mat-icon> Item
+            </h2>
+
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Monto</mat-label>
+                    <input matInput formControlName="montoI" placeholder="Monto">
+                </mat-form-field>
+            </p>
+            <p *ngIf="select=='Cheque'">
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Tipo</mat-label>
+                    <input matInput formControlName="tipo" placeholder="Tipo">
+                </mat-form-field>
+            </p>
+            <p>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Descripcion</mat-label>
+                    <textarea matInput formControlName="descripcion" placeholder="Descripcion"></textarea>
+                </mat-form-field>
+            </p>
+            <p>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Cantidad</mat-label>
+                    <input matInput formControlName="cantidad" placeholder="Cantidad">
+                </mat-form-field>
+            </p>
             <br>
-            <button type="submit" mat-raised-button>Crear Cliente</button>
+            <button type="submit" mat-raised-button>Crear presupuesto</button>
         </form>
     </mat-card-content>
 

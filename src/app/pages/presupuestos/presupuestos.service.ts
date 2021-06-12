@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Presuspuestos } from '@app/shared/models/presupuestos';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -30,5 +31,15 @@ export class PresupuestosService {
 
   public deletePresu(id: string){
     return this.http.delete<Presuspuestos>(`${environment.API}/presupuesto/${id}`);
+  }
+
+
+  private handlerError(err): Observable<never> {
+    let errorMessage = "An error ocurred retrieving data";
+    if (err) {
+      errorMessage = `CAMPOS NO VALIDOS, Error: code ${err.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
   }
 }

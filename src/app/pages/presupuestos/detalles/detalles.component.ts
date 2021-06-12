@@ -47,35 +47,38 @@ export class DetallesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.subscription.add(
-      this.clientSvc.getAllClientD().subscribe((data) => {
-        data.forEach((element: ClienteDetalle) => this.lista.push(element.razon_social));
-      })
-    );
 
 
 
     this.subscription.add(
       this.presuSvc.getById(this.id).subscribe((presupuesto: Presuspuestos) => {
-        this.upForm.patchValue({  //Asinga los valores al "detalle presupuesto"
-          "numero": presupuesto.numero,
-          "usuario": presupuesto.usuario,
-          "cliente": presupuesto.cliente,
-          "fecha_emision": presupuesto.fecha_emision,
-          "estado": presupuesto.estado,
-          "observaciones": presupuesto.observaciones,
-          "descuentos": presupuesto.descuentos,
-          "recargos": presupuesto.recargos,
-          "forma_pago": presupuesto.forma_pago,
-          "banco": presupuesto.banco,
-          "nro": presupuesto.nro,
-          "fecha": presupuesto.fecha,
-          "monto": presupuesto.monto,
-          "total": presupuesto.total,
-          "tipo": presupuesto.tipo,
-          "descripcion": presupuesto.descripcion,
-          "cantidad": presupuesto.cantidad
-        })
+
+        this.clientSvc.getAllClientD().subscribe((data) => {
+          data.forEach((element: ClienteDetalle) => {
+            this.lista.push(element.razon_social);
+          });
+        }),
+
+
+          this.upForm.patchValue({  //Asinga los valores al "detalle presupuesto"
+            "numero": presupuesto.numero,
+            "usuario": presupuesto.usuario,
+            "cliente": presupuesto.cliente,
+            "fecha_emision": presupuesto.fecha_emision,
+            "estado": presupuesto.estado,
+            "observaciones": presupuesto.observaciones,
+            "descuentos": presupuesto.descuentos,
+            "recargos": presupuesto.recargos,
+            "forma_pago": presupuesto.forma_pago,
+            "banco": presupuesto.banco,
+            "nro": presupuesto.nro,
+            "fecha": presupuesto.fecha,
+            "monto": presupuesto.monto,
+            "total": presupuesto.total,
+            "tipo": presupuesto.tipo,
+            "descripcion": presupuesto.descripcion,
+            "cantidad": presupuesto.cantidad
+          })
         this.select = presupuesto.forma_pago;
       }));
     this.upForm.disable();
@@ -87,18 +90,19 @@ export class DetallesComponent implements OnInit {
   }
 
   upForm = this.fb.group({  //Formulario de "detalle Cliente"
+    "id": this.id,
     "numero": ['', Validators.required],
     "usuario": ['', Validators.required],
     "cliente": ['', Validators.required],
-    "fecha_emision":['', Validators.required] ,
+    "fecha_emision": ['', Validators.required],
     "estado": ['', Validators.required],
     "observaciones": [''],
     "descuentos": [0, Validators.required],
     "recargos": [0, Validators.required],
     "forma_pago": ['', Validators.required],
-    "banco": '',
-    "nro": '',
-    "fecha": '',
+    "banco": [''],
+    "nro": [''],
+    "fecha": [' '],
     "monto": ['', Validators.required],
     "total": [''],
     "tipo": ['', Validators.required],

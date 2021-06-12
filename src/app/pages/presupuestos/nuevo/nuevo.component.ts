@@ -34,19 +34,13 @@ export class NuevoComponent implements OnInit, OnDestroy {
         data.forEach((element: ClienteDetalle) => this.lista.push(element.razon_social));
       })
     );
-
-
-    /*const user = JSON.parse(localStorage.getItem('user'));
-    
-    this.newForm.patchValue({
-      "usuario": user.role
-    })
-    console.log(user.role, 'asdas')*/
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
+
 
   newForm = this.fb.group({  //Formulario de "detalle Cliente"
     "numero": ['', Validators.required],
@@ -54,28 +48,43 @@ export class NuevoComponent implements OnInit, OnDestroy {
     "cliente": ['', Validators.required],
     "estado": ['', Validators.required],
     "observaciones": [''],
-    "descuentos": [0, Validators.required],
-    "recargos": [0, Validators.required],
+    "descuentos": ['', Validators.required],
+    "recargos": ['', Validators.required],
     "forma_pago": ['', Validators.required],
     "banco": [''],
-    "nro": [0],
-    "fecha": [new Date()],
+    "nro": [''],
+    "fecha": [''],
     "monto": ['', Validators.required],
-    "total": [''],
-    "tipo": ['', Validators.required],
-    "descripcion": [''],
+    "montoI": [''],
+    "tipo": [''],
+    "descripcion": ['', Validators.required],
     "cantidad": ['', Validators.required]
   });
 
 
 
   onCreate() {
+    if (this.newForm.value.descuentos == '' && this.newForm.value.recargos == '') {
+      this.newForm.patchValue({ "descuentos": [0], "recargos": [0] });
+    } else if (this.newForm.value.descuentos == '') {
+      this.newForm.patchValue({ "descuentos": [0] });
+    } else if (this.newForm.value.recargos == '') {
+      this.newForm.patchValue({ "recargos": [0] });
+    }
+
+
+    if (this.newForm.invalid) {
+      return;
+    }
+
+
 
 
     const formValue = this.newForm.value;
     this.subscription.add(
-      this.presuSvc.newPresu(formValue).subscribe(data => console.log(data))
-    );
-    this.router.navigate(['/presupuestos']);
+      this.presuSvc.newPresu(formValue).subscribe((data) => {
+      }));
+    this.router.navigate(['/presupuestos'])
+
   }
 }
