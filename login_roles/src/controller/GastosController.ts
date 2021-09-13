@@ -35,12 +35,11 @@ export class GastosController{
     }
 
     static newGasto = async (req: Request, res: Response) => {
-        const { numero, proveedor, fecha_emision, concepto, forma_pago, banco, monto, nro, fecha } = req.body;
+        const { numero, proveedor, concepto, forma_pago, banco, monto, nro, fecha } = req.body;
         const gasto = new Gastos();
 
         gasto.numero = numero;
         gasto.proveedor = proveedor;
-        gasto.fecha_emision = fecha_emision;
         gasto.concepto = concepto;
         gasto.forma_pago = forma_pago;
         
@@ -81,7 +80,6 @@ export class GastosController{
         const {
             numero,
             proveedor,
-            fecha_emision,
             concepto,
             forma_pago,
             banco,
@@ -97,7 +95,6 @@ export class GastosController{
 
             gasto.numero = numero;
             gasto.proveedor = proveedor;
-            gasto.fecha_emision = fecha_emision;
             gasto.concepto = concepto;
             gasto.forma_pago = forma_pago;
             

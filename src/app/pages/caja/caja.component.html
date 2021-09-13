@@ -93,45 +93,45 @@
 
                 <div>
                     <h2>Ingresos</h2>
-                    <table border="">
-                        <tr>
-                            <td>efectivo</td>
-                            <td>600</td>
-                        </tr>
-                        <tr>
-                            <td>cheque</td>
-                            <td>100</td>
-                        </tr>
-                        <tr>
-                            <td>deposito</td>
-                            <td>100</td>
-                        </tr>
-                        <tr>
-                            <td>transferencia</td>
-                            <td>200</td>
-                        </tr>
-                    </table>
+                    <div class="ingreso">
+                        <table mat-table [dataSource]="dataSourceI" class="mat-elevation-z8">
+                            
+                            <ng-container matColumnDef="ingresos_tipo">
+                                <th mat-header-cell *matHeaderCellDef> tipo de ingreso </th>
+                                <td mat-cell *matCellDef="let element"> {{element.ingresos_tipo}}
+                                </td>
+                            </ng-container>
+
+                            
+                            <ng-container matColumnDef="monto">
+                                <th mat-header-cell *matHeaderCellDef> monto </th>
+                                <td mat-cell *matCellDef="let element"> {{element.monto}} </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumnsI"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumnsI;"></tr>
+                        </table>
+                    </div>
                 </div>
                 <br>
                 <div>
                     <h2>Egresos</h2>
-                    <table border="">
-                        <tr>
-                            <td>efectivo</td>
-                            <td>600</td>
-                        </tr>
-                        <tr>
-                            <td>cheque</td>
-                            <td>100</td>
-                        </tr>
-                        <tr>
-                            <td>deposito</td>
-                            <td>100</td>
-                        </tr>
-                        <tr>
-                            <td>transferencia</td>
-                            <td>200</td>
-                        </tr>
+                    <table mat-table [dataSource]="dataSourceE" class="mat-elevation-z8">
+                            
+                        <ng-container matColumnDef="egresos_tipo">
+                            <th mat-header-cell *matHeaderCellDef> tipo de egreso </th>
+                            <td mat-cell *matCellDef="let element"> {{element.egresos_tipo}}
+                            </td>
+                        </ng-container>
+
+                        
+                        <ng-container matColumnDef="monto">
+                            <th mat-header-cell *matHeaderCellDef> monto </th>
+                            <td mat-cell *matCellDef="let element"> {{element.monto}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsE"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsE;"></tr>
                     </table>
                 </div>
                 <br>
@@ -157,22 +157,26 @@
             <br>
             <mat-card-content>
                 <div>
-                    <table border="1">
-                        <tr>
-                            <th>Responsable</th>
-                            <th>Concepto</th>
-                            <th>Monto</th>
-                        </tr>
-                        <tr>
-                            <td>Jaime</td>
-                            <td>Vuelto</td>
-                            <td>100</td>
-                        </tr>
-                        <tr>
-                            <td>Jessi</td>
-                            <td>Juguito pal tere</td>
-                            <td>100</td>
-                        </tr>
+                    <table mat-table [dataSource]="dataSourceR" class="mat-elevation-z8">
+                            
+                        <ng-container matColumnDef="nombre">
+                            <th mat-header-cell *matHeaderCellDef> nombre </th>
+                            <td mat-cell *matCellDef="let element"> {{element.nombre}}
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="concepto">
+                            <th mat-header-cell *matHeaderCellDef> concepto </th>
+                            <td mat-cell *matCellDef="let element"> {{element.concepto}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="monto">
+                            <th mat-header-cell *matHeaderCellDef> monto </th>
+                            <td mat-cell *matCellDef="let element"> {{element.monto}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsR"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsR;"></tr>
                     </table>
                 </div>
             </mat-card-content>

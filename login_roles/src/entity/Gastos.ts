@@ -9,7 +9,7 @@ export class Gastos{
 
     @Column()
     @IsNotEmpty()
-    numero: number;
+    numero: string;
 
     @Column()
     @IsNotEmpty()
@@ -25,24 +25,22 @@ export class Gastos{
 
     
 
-    @Column()
-    @IsNotEmpty()
-    forma_pago: string;
+   //--------------FORMA DE PAGO/TIPO
+   @Column({ default: '' })
+   @IsNotEmpty()
+   forma_pago: string;
 
-    @Column()
-    @IsOptional()
-    banco: string;
+   @Column({ default: '' })
+   banco: string;
 
-    @Column()
-    @IsOptional()
-    nro: number;
+   @Column({ default: '' })
+   nro: string;
 
-    @Column()
-    @IsOptional()
-    fecha: string;
+   @Column({ default: '' })
+   fecha: string;
 
-    @Column("decimal", { precision: 10, scale: 2 })
-    @IsNotEmpty()
-    monto: number;
+   @Column("decimal", { precision: 15, scale: 2 })
+   @IsNotEmpty()
+   monto: number;
 
 }

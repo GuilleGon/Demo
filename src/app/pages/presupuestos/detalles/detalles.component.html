@@ -71,109 +71,106 @@
                 </mat-form-field>
             </p>
 
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Pago
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        Como va a pagar
-                        <mat-icon>paid</mat-icon>
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
+            <br>
+            <br>
+            <hr>
+            <h2>
+                <mat-icon>paid</mat-icon> Pago
+            </h2>
 
 
-                <div class="Pago">
-                    <!--  SECCIN DE PAGO   -->
+
+            <div class="Pago">
+                <!--  SECCIN DE PAGO   -->
+                <p>
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Forma de pago</mat-label>
+                        <mat-select formControlName="forma_pago" [(value)]="select">
+                            <mat-option *ngFor="let forma_pago of forma_pago" [value]="forma_pago">{{forma_pago}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+
+                <div *ngIf="select!='Efectivo'">
                     <p>
-                        Forma de pago
                         <br>
                         <mat-form-field appearance="outline">
-                            <mat-select formControlName="forma_pago" [(value)]="select">
-                                <mat-option *ngFor="let forma_pago of forma_pago" [value]="forma_pago">{{forma_pago}}
-                                </mat-option>
-                            </mat-select>
+                            <mat-label>Banco</mat-label>
+                            <input matInput formControlName="banco" placeholder="Banco">
                         </mat-form-field>
                     </p>
-
-                    <div *ngIf="select!='Efectivo'">
-                        <p>
-                            Banco
-                            <br>
-                            <mat-form-field appearance="outline">
-                                <input matInput formControlName="banco" type="text">
-                            </mat-form-field>
-                        </p>
-                        <p>
-                            Numero del pago
-                            <br>
-                            <mat-form-field appearance="outline">
-                                <input matInput formControlName="nro" type="text">
-                            </mat-form-field>
-                        </p>
-                        <p *ngIf="select=='Cheque'">
-                            Fecha
-                            <br>
-                            <mat-form-field appearance="outline">
-                                <input matInput formControlName="fecha" [matDatepicker]="picker">
-                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
-                            </mat-form-field>
-                        </p>
-                    </div>
                     <p>
-                        Monto
                         <br>
                         <mat-form-field appearance="outline">
-                            <input matInput formControlName="monto" type="text">
+                            <mat-label>Numero de pago</mat-label>
+                            <input matInput formControlName="nro" placeholder="Numero de pago">
+                        </mat-form-field>
+                    </p>
+                    <p *ngIf="select=='Cheque'">
+                        <br>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Fecha</mat-label>
+                            <input matInput formControlName="fecha" [matDatepicker]="picker" placeholder="Fecha">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
                     </p>
                 </div>
-
                 <p>
-                    Total
                     <br>
                     <mat-form-field appearance="outline">
-                        <input matInput formControlName="total" type="text">
+                        <mat-label>Monto</mat-label>
+                        <input matInput formControlName="monto" placeholder="Monto">
                     </mat-form-field>
                 </p>
-            </mat-expansion-panel>
+            </div>
+
+            <p>
+                <br>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Total</mat-label>
+                    <input matInput disabled>
+                </mat-form-field>
+            </p>
             <br>
             <!--           ITEM         -->
 
 
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Item
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        Que va a llevar
-                        <mat-icon> shopping_cart</mat-icon>
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <p>
-                    Tipo
-                    <br>
-                    <mat-form-field appearance="outline">
-                        <input matInput formControlName="tipo" type="text">
-                    </mat-form-field>
-                </p>
-                <p>
-                    Descripcion
-                    <br>
-                    <mat-form-field appearance="outline">
-                        <textarea matInput formControlName="descripcion" type="text"></textarea>
-                    </mat-form-field>
-                </p>
-                <p>
-                    Cantidad
-                    <br>
-                    <mat-form-field appearance="outline">
-                        <input matInput formControlName="cantidad" type="text">
-                    </mat-form-field>
-                </p>
-            </mat-expansion-panel>
+            <hr>
+            <h2>
+                <mat-icon> shopping_cart</mat-icon> Item
+            </h2>
+
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Monto</mat-label>
+                    <input matInput formControlName="montoI" placeholder="Monto">
+                </mat-form-field>
+            </p>
+            <p *ngIf="select=='Cheque'">
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Tipo</mat-label>
+                    <input matInput formControlName="tipo" placeholder="Tipo">
+                </mat-form-field>
+            </p>
+            <p>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Descripcion</mat-label>
+                    <textarea matInput formControlName="descripcion" placeholder="Descripcion"></textarea>
+                </mat-form-field>
+            </p>
+            <p>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Cantidad</mat-label>
+                    <input matInput formControlName="cantidad" placeholder="Cantidad">
+                </mat-form-field>
+            </p>
             <br>
 
             <div class="avanzada">

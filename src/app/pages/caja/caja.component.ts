@@ -9,8 +9,12 @@ interface ingresos {   //    arqueo, ingresos
   ingresos_tipo: 'efectivo' | 'deposito' | 'cheque' | 'transferencia';
   monto: number;
 }
+
 const arqueo_ingres: ingresos[] = [
-  { ingresos_tipo: 'cheque', monto: 200 }
+  { ingresos_tipo: 'cheque', monto: 400 },
+  { ingresos_tipo: 'efectivo', monto: 200 },
+  { ingresos_tipo: 'deposito', monto: 100 },
+  { ingresos_tipo: 'transferencia', monto: 650 },
 ];
 
 interface egresos {   //    arqueo, egresos
@@ -18,7 +22,22 @@ interface egresos {   //    arqueo, egresos
   monto: number;
 }
 const arqueo_egres: egresos[] = [
-  { egresos_tipo: 'cheque', monto: 200 }
+  { egresos_tipo: 'cheque', monto: 400 },
+  { egresos_tipo: 'efectivo', monto: 200 },
+  { egresos_tipo: 'deposito', monto: 100 },
+  { egresos_tipo: 'transferencia', monto: 650 },
+];
+
+interface retiro {   //    arqueo, egresos
+  nombre: string;
+  concepto: string;
+  monto: number;
+}
+const retiro: retiro[] = [
+  { nombre: 'Gaston', concepto: 'Vuelto', monto: 400 },
+  { nombre: 'Hernan', concepto: 'Vuelto', monto: 200 },
+  { nombre: 'Cintia', concepto: 'Vuelto', monto: 700 },
+  { nombre: 'Gaston', concepto: 'Vuelto', monto: 800 },
 ];
 
 
@@ -54,13 +73,27 @@ export class CajaComponent implements OnInit {
         this.totalCheques = this.presus.length;
       })
     );
-    
+
 
   }
+
+
 
   //-----------------------------------------------------INICIO DEL DIA
   displayedColumns: string[] = ['numero', 'banco', 'fecha_vencimiento', 'monto'];      //ENCABEZADO DE LA LISTA(TITULOS)
   dataSource = new MatTableDataSource<Presuspuestos>();
+
+  //-----------------------------------------------------ARQUEO INGRESOS
+  displayedColumnsI: string[] = ['ingresos_tipo', 'monto'];      //ENCABEZADO DE LA LISTA(TITULOS)
+  dataSourceI = arqueo_ingres;
+
+  //-----------------------------------------------------ARQUEO EGRESOS
+  displayedColumnsE: string[] = ['egresos_tipo', 'monto'];      //ENCABEZADO DE LA LISTA(TITULOS)
+  dataSourceE = arqueo_egres;
+
+  //-----------------------------------------------------RETIRO
+  displayedColumnsR: string[] = ['nombre', 'concepto', 'monto'];      //ENCABEZADO DE LA LISTA(TITULOS)
+  dataSourceR = retiro;
 
   i_cierre: number = 0;
   i_efectivo: number = 0;
@@ -74,8 +107,8 @@ export class CajaComponent implements OnInit {
   a_efectivo: number = 0;
   totalMovimiento: number;
 
-  empezar(){
-    
+  empezar() {
+
   }
 
   //--------------------------------------------------------RETIRO DE EFECTIVO

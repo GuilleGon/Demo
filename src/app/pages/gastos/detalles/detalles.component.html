@@ -1,1 +1,117 @@
-<p>detalles works!</p>
+<mat-card>
+    <mat-card-title>
+        <h2>Detalle del gasto // Modificar</h2>
+    </mat-card-title>
+    <br>
+    <mat-card-content class="contenido">
+        <form [formGroup]="upForm" (ngSubmit)="updateGasto()">
+            <p>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Numero</mat-label>
+                    <input matInput formControlName="numero" placeholder="Numero">
+                </mat-form-field>
+            </p>
+            <p>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Proveedor</mat-label>
+                    <mat-select formControlName="proveedor">
+                        <mat-option *ngFor="let lista of lista" [value]="lista">{{lista}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </p>
+            <p>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Fecha de emision</mat-label>
+                    <input matInput formControlName="fecha_emision" placeholder="Fecha de emision">
+                </mat-form-field>
+            </p>
+            <p>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Concepto</mat-label>
+                    <textarea matInput formControlName="concepto" placeholder="Concepto"></textarea>
+                </mat-form-field>
+            </p>
+            <br>
+            <br>
+            <hr>
+            <h2>
+                <mat-icon>paid</mat-icon> Pago
+            </h2>
+            <div class="Pago">
+                <!--  SECCIN DE PAGO   -->
+                <p>
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Forma de pago</mat-label>
+                        <mat-select formControlName="forma_pago" [(value)]="select">
+                            <mat-option *ngFor="let forma_pago of forma_pago" [value]="forma_pago">{{forma_pago}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+
+                <div *ngIf="select!='Efectivo'">
+                    <p>
+                        <br>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Banco</mat-label>
+                            <input matInput formControlName="banco" placeholder="Banco">
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <br>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Numero de pago</mat-label>
+                            <input matInput formControlName="nro" placeholder="Numero de pago">
+                        </mat-form-field>
+                    </p>
+                    <p *ngIf="select=='Cheque'">
+                        <br>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Fecha</mat-label>
+                            <input matInput formControlName="fecha" [matDatepicker]="picker" placeholder="Fecha">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </p>
+                </div>
+                <p>
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Monto</mat-label>
+                        <input matInput formControlName="monto" placeholder="Monto">
+                    </mat-form-field>
+                </p>
+            </div>
+
+            <br>
+
+            <div class="avanzada">
+                <h3>Avanzada:</h3>
+                <hr>
+                <br>
+                <div class="editContent">
+                    <p>Modo de edicion: {{message}}</p>
+                    <mat-icon>edit</mat-icon>
+                    <mat-slide-toggle (click)="edicion()"></mat-slide-toggle>
+                </div>
+                <br>
+                <br>
+
+                <div>
+                    <button type="button" mat-raised-button (click)="updateGasto()" [disabled]="habilitado">Guardar
+                        Cambios</button>
+                    <span class="sparcer">&ensp;|&ensp;</span>
+                    <button type="button" mat-raised-button (click)="onDelete()" [disabled]="!habilitado">Borrar
+                        Presupuesto</button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+
+</mat-card>

@@ -6,30 +6,32 @@
     <mat-card-content class="contenido">
         <form [formGroup]="upForm" (ngSubmit)="updateClient()">
             <p>
-                Razon social
                 <br>
                 <mat-form-field appearance="outline">
-                    <input matInput formControlName="razon_social" type="text">
+                    <mat-label>Razon Social</mat-label>
+                    <input formControlName="razon_social" autocomplete="off" matInput type="text"
+                        placeholder="Ej. Juancito">
                 </mat-form-field>
             </p>
             <p>
-                Email
                 <br>
                 <mat-form-field appearance="outline">
-                    <input matInput formControlName="email" type="text">
+                    <mat-label>Email</mat-label>
+                    <input formControlName="email" autocomplete="off" matInput type="text" placeholder="Email">
                 </mat-form-field>
             </p>
             <p>
-                Direccion
                 <br>
                 <mat-form-field appearance="outline">
-                    <input matInput formControlName="direccion" type="text">
+                    <mat-label>Direccion</mat-label>
+                    <input formControlName="direccion" autocomplete="off" matInput type="text"
+                        placeholder="Direccion">
                 </mat-form-field>
             </p>
             <p>
-                Tipo cliente
                 <br>
                 <mat-form-field appearance="outline">
+                    <mat-label>Tipo de cliente</mat-label>
                     <mat-select formControlName="tipo_cliente">
                         <mat-option value="Publico">Publico</mat-option>
                         <mat-option value="Privado">Privado</mat-option>
@@ -37,31 +39,32 @@
                 </mat-form-field>
             </p>
             <p>
-                CUIT
                 <br>
                 <mat-form-field appearance="outline">
-                    <input matInput formControlName="CUIT" type="text">
+                    <mat-label>CUIT</mat-label>
+                    <input matInput formControlName="CUIT" autocomplete="off">
                 </mat-form-field>
             </p>
             <p>
-                Presupuestos emitidos
                 <br>
                 <mat-form-field appearance="outline">
-                    <input matInput formControlName="presupuestos_emitidos" type="text">
+                    <mat-label>Presupuestos emitidos</mat-label>
+                    <input matInput formControlName="presupuestos_emitidos" autocomplete="off"
+                        placeholder="PResupuestos emitidos">
                 </mat-form-field>
             </p>
             <p>
-                Presupuestos pendientes
                 <br>
                 <mat-form-field appearance="outline">
-                    <input matInput formControlName="presupuestos_pendientes" type="text">
+                    <mat-label>Presupuestos pendientes</mat-label>
+                    <input matInput formControlName="presupuestos_pendientes" autocomplete="off">
                 </mat-form-field>
             </p>
             <p>
-                Telefono
                 <br>
                 <mat-form-field appearance="outline">
-                    <input matInput formControlName="telefono" type="text">
+                    <mat-label>Telefono</mat-label>
+                    <input matInput formControlName="telefono" autocomplete="off" placeholder="Telefono">
                 </mat-form-field>
             </p>
 

@@ -35,8 +35,10 @@ export class NuevoComponent implements OnInit, OnDestroy {
   onCreate() {
     const formValue = this.newForm.value;
     this.subscription.add(
-      this.retiro.crearRetiro(formValue).subscribe(() => {
-        this.router.navigate(['/efectivo']);
+      this.retiro.crearRetiro(formValue).subscribe((res) => {
+        if (res) {
+          this.router.navigate(['/efectivo']);
+        }
       })
 
     );

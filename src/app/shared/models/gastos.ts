@@ -1,14 +1,14 @@
 export interface Gastos{
 
     id:number;
-    numero: number;
+    numero: string;
     proveedor: string;
     fecha_emision: Date;
     concepto: string;
 
     forma_pago: string;
     banco: string;
-    nro: number;
-    fecha: Date;
+    nro: string;
+    fecha: string;
     monto: number;
 }
